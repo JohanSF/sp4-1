@@ -160,30 +160,6 @@ animate(0)
 t1 = time()
 interval = 1000 * timestep - (t1 - t0)
 
-
-"""
-vbkjavbw
-vwnlv
-vfwbkjvbw
-
-
-
-veænbe
-
-vflk
-"""
-
-
-
-"""
-Dette r er amf vewh 
-
-
-vbevgbk
-
-vnorew
-"""
-
 anim = animation.FuncAnimation(fig1, animate, init_func=init,
                                frames=len(t)-10, blit=False)
 
