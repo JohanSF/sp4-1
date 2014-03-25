@@ -6,7 +6,7 @@ Introduction
 ------------
 
 This python script solves the equation of motion for a *Pendulum with an
-Oscillating Support*, as given by eq. (3.11) in `Vibration and Stability - JJT`.
+Oscillating Support*, as given by eq. (3.11) in **Vibration and Stability - JJT**.
 
 
 Requirements
