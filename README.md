@@ -81,4 +81,4 @@ sudo apt-get install ia32-libs libc6-i386 libc6-dev-i386 build-essential
 Is it really worth the trouble?
 ===============================
 Speedup compared to matlab:
-![alt text](./timing.pdf)
+![alt text](timing.pdf)
