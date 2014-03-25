@@ -178,6 +178,10 @@ vflk
 """
 Dette r er amf vewh 
 
+
+vbevgbk
+
+vnorew
 """
 
 anim = animation.FuncAnimation(fig1, animate, init_func=init,
