@@ -174,6 +174,12 @@ vflk
 """
 
 
+
+"""
+Dette r er amf vewh 
+
+"""
+
 anim = animation.FuncAnimation(fig1, animate, init_func=init,
                                frames=len(t)-10, blit=False)
 
