@@ -31,8 +31,8 @@ Solve the EOM
 -------------
 
 To solve the EOMs, they need to be recasted into a system of first order
-equations. Equations, parameters(here: `q, OMEGA, omega0, beta`) and initial
-conditions are set in the function `setupODE`.
+equations. Equations(here: `theta=..., v=...`), parameters(here: `q, OMEGA, omega0, beta`) and initial
+conditions(here: `q0, theta0`) are set in `DSargs.pars`, `DSargs.varspecs` and `DSargs.ics` respectively.
 
 
 

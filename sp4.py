@@ -106,8 +106,12 @@ ax12.grid(True)
 
 
 # ANIMATION
+# fig2 = plt.figure()
+# ax22 = fig2.add_subplot(111, aspect='equal', autoscale_on=False,
+#                         xlim=(-1.5, 1.5), ylim=(-1.5, 1.5))
 ax22 = fig1.add_subplot(224, aspect='equal', autoscale_on=False,
                         xlim=(-1.5, 1.5), ylim=(-1.5, 1.5))
+
 ax22.grid(True)
 ax22.set_xlabel(r'$x$')
 ax22.set_ylabel(r'$y$')
@@ -122,8 +126,9 @@ ySupport = 0
 xPendul = np.cos(theta) - xSupport
 yPendul = np.sin(theta)
 
-line,       = ax22.plot([], [], 'o-', lw=2)
-lineFollow, = ax22.plot([], [], 'r-', lw=1)
+pendul,     = ax22.plot([], [], 'o-', lw=2)
+lineFading, = ax22.plot([], [], 'b--', lw=3)
+lineFollow2, = ax22.plot([], [], 'r-', lw=1)
 lineFixed1, = ax22.plot([], [], 'k-', lw=4)
 lineFixed2, = ax22.plot([], [], 'k-', lw=4)
 
@@ -132,36 +137,34 @@ time_text = ax22.text(0.05, 0.9, '', transform=ax22.transAxes)
 
 
 def init():
-    line.set_data([], [])
-    lineFollow.set_data([], [])
+    """initialize animation"""
+    pendul.set_data([], [])
+    lineFading.set_data([], [])
+    lineFollow2.set_data([], [])
     lineFixed1.set_data([-0.04, -0.04], [np.min(xSupport), np.max(xSupport)])
     lineFixed2.set_data([0.04, 0.04], [np.min(xSupport), np.max(xSupport)])
     time_text.set_text('')
-    return line, time_text
+    return pendul, lineFading, lineFollow2, time_text, lineFixed1, lineFixed2
 
 
 def animate(i):
-    i += 10
+    """perform animation step"""
+    i += 20
     thisx = [ySupport, yPendul[i]]
     thisy = [xSupport[i], -xPendul[i]]
-    # thisx2 = yPendul[i-10:i+1]
-    # thisy2 = -xPendul[i-10:i+1]
+    thisx1 = yPendul[i-20:i+1]
+    thisy1 = -xPendul[i-20:i+1]
     thisx2 = yPendul[0:i+1]
     thisy2 = -xPendul[0:i+1]
-    line.set_data(thisx, thisy)
-    lineFollow.set_data(thisx2, thisy2)
+    pendul.set_data(thisx, thisy)
+    lineFading.set_data(thisx1, thisy1)
+    lineFollow2.set_data(thisx2, thisy2)
     time_text.set_text(time_template % (i*timestep))
-    return line, time_text
+    return pendul, lineFading, lineFollow2, time_text
 
-# choose the interval based on dt and the time to animate one step
-from time import time
-t0 = time()
-animate(0)
-t1 = time()
-interval = 1000 * timestep - (t1 - t0)
 
 anim = animation.FuncAnimation(fig1, animate, init_func=init,
-                               frames=len(t)-10, blit=False)
+                               frames=len(t)-20, interval=20, blit=True)
 
 # anim.save('pendulumSupport.mp4', fps=15)
 
