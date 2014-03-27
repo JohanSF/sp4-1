@@ -159,14 +159,20 @@ def animate(i):
     pendul.set_data(thisx, thisy)
     lineFading.set_data(thisx1, thisy1)
     lineFollow2.set_data(thisx2, thisy2)
-    time_text.set_text(time_template % (i*timestep))
+    time_text.set_text(time_template % (t[i]))
     return pendul, lineFading, lineFollow2, time_text
 
-
-anim = animation.FuncAnimation(fig1, animate, init_func=init,
-                               frames=len(t)-20, interval=20, blit=True)
-
-# anim.save('pendulumSupport.mp4', fps=15)
-
 plt.tight_layout()  # avoid overlapping title and labels
-fig1.show()         # show figure
+
+# blit=True: tells the animation to only redraw the pieces of the plot which
+# have changed
+# interval=20: 20 ms between frames
+# To get the correct interval(eg. the timing is correct), use
+# interval=t[-1]/len(t)*1000 - gives the correct time in ms
+anim = animation.FuncAnimation(fig1, animate, init_func=init,
+                               frames=len(t)-25, interval=20, blit=True)
+
+anim.save('pendulumSupport.mp4', fps=50, extra_args=['-vcodec', 'libx264'])
+
+plt.show()         # show figure
+
