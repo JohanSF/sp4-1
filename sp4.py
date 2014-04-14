@@ -56,9 +56,9 @@ DSargs.tdomain = [tstart, tstop]  # set the range of integration.
 lang = "c"
 
 # Create ode-object
-if (lang == 'python'):
+if lang is 'python':
     ode = dst.Generator.Vode_ODEsystem(DSargs)
-if (lang == 'c'):
+if lang is 'c':
     DSargs['nobuild'] = True
     ode = dst.Generator.Dopri_ODEsystem(DSargs)
     ode.makeLib()  # compile (remove gen files and dirs before recompiling)
